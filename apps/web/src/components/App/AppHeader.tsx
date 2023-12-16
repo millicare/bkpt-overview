@@ -1,18 +1,15 @@
-import { styled, css } from 'styled-components'
 import {
-  Text,
+  ArrowBackIcon,
+  AutoRow,
   Flex,
   Heading,
   IconButton,
-  ArrowBackIcon,
-  NotificationDot,
   QuestionHelper,
-  AutoRow,
+  Text
 } from '@pancakeswap/uikit'
 import { useExpertMode } from '@pancakeswap/utils/user'
-import GlobalSettings from 'components/Menu/GlobalSettings'
 import Link from 'next/link'
-import { SettingsMode } from '../Menu/GlobalSettings/types'
+import { css, styled } from 'styled-components'
 
 interface Props {
   title: string | React.ReactNode
@@ -85,9 +82,6 @@ const AppHeader: React.FC<React.PropsWithChildren<Props>> = ({
             {!noConfig && (
               <Flex alignItems="flex-end">
                 {IconSlot}
-                <NotificationDot show={expertMode}>
-                  <GlobalSettings mode={SettingsMode.SWAP_LIQUIDITY} />
-                </NotificationDot>
               </Flex>
             )}
             {noConfig && buttons && (
