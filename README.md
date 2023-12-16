@@ -1,21 +1,12 @@
-# 🥞 Pancake Frontend
+# Biokript Overview
 
 <p align="center">
   <a href="https://pancakeswap.finance">
-      <img src="https://pancakeswap.finance/logo.png" height="128">
+      <img src="https://biokript.com/favicon.ico" height="128">
   </a>
 </p>
 
-This project contains the main features of the pancake application.
-
-If you want to contribute, please refer to the [contributing guidelines](./CONTRIBUTING.md) of this project.
-
 ## Documentation
-
-- [Info](doc/Info.md)
-- [Cypress tests](doc/Cypress.md)
-
-> Install dependencies using [pnpm](https://pnpm.io)
 
 ## `apps/web`
 <details>
@@ -40,48 +31,6 @@ pnpm build
 pnpm start
 ```
 </details>
-
-## `apps/aptos`
-<details>
-<summary>
-How to start
-</summary>
-
-```sh
-pnpm dev:aptos
-```
-```sh
-pnpm build:aptos
-```
-</details>
-
-## `apps/blog`
-<details>
-<summary>
-How to start
-</summary>
-
-```sh
-pnpm dev:blog
-```
-```sh
-pnpm build:blog
-```
-
-## `apps/games`
-<details>
-<summary>
-How to start
-</summary>
-
-```sh
-pnpm dev:games
-```
-```sh
-pnpm build:games
-```
-</details>
-
 
 ## Packages
 
