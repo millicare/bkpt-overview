@@ -1,0 +1,118 @@
+import { arbitrumTokens } from '@pancakeswap/tokens'
+import { FeeAmount } from '@pancakeswap/v3-sdk'
+import { defineFarmV3Configs } from '../src/defineFarmV3Configs'
+
+export const farmsV3 = defineFarmV3Configs([
+  {
+    pid: 1,
+    lpAddress: '0xd9e2a1a61B6E61b275cEc326465d417e52C1b95c',
+    token0: arbitrumTokens.weth,
+    token1: arbitrumTokens.usdc,
+    feeAmount: FeeAmount.LOW,
+  },
+  {
+    pid: 2,
+    lpAddress: '0x0BaCc7a9717e70EA0DA5Ac075889Bd87d4C81197',
+    token0: arbitrumTokens.weth,
+    token1: arbitrumTokens.usdt,
+    feeAmount: FeeAmount.LOW,
+  },
+  {
+    pid: 3,
+    lpAddress: '0x0d7c4b40018969f81750d0a164c3839a77353EFB',
+    token0: arbitrumTokens.weth,
+    token1: arbitrumTokens.arb,
+    feeAmount: FeeAmount.LOW,
+  },
+  {
+    pid: 4,
+    lpAddress: '0x7e928afb59f5dE9D2f4d162f754C6eB40c88aA8E',
+    token0: arbitrumTokens.usdc,
+    token1: arbitrumTokens.usdt,
+    feeAmount: FeeAmount.LOWEST,
+  },
+  {
+    pid: 5,
+    lpAddress: '0xF5Fac36c2429e1Cf84D4aBACdB18477Ef32589c9',
+    token0: arbitrumTokens.cake,
+    token1: arbitrumTokens.weth,
+    feeAmount: FeeAmount.MEDIUM,
+  },
+  {
+    pid: 6,
+    lpAddress: '0xD58522653D3F368D76d453Bc4C80CD7Fb36AC786',
+    token0: arbitrumTokens.weth,
+    token1: arbitrumTokens.lvl,
+    feeAmount: FeeAmount.MEDIUM,
+  },
+  {
+    pid: 7,
+    lpAddress: '0x5e3C3a063cc9A4AEB5310C7faDc2A98aEbDD245d',
+    token0: arbitrumTokens.weth,
+    token1: arbitrumTokens.mgp,
+    feeAmount: FeeAmount.MEDIUM,
+  },
+  {
+    pid: 8,
+    lpAddress: '0x9fFCA51D23Ac7F7df82da414865Ef1055E5aFCc3',
+    token0: arbitrumTokens.arb,
+    token1: arbitrumTokens.usdc,
+    feeAmount: FeeAmount.LOW,
+  },
+  {
+    pid: 9,
+    lpAddress: '0x81D1cc282e9a097115E59F67B9D81d4d1d00AC51',
+    token0: arbitrumTokens.arb,
+    token1: arbitrumTokens.usdt,
+    feeAmount: FeeAmount.LOW,
+  },
+  {
+    pid: 10,
+    lpAddress: '0x1Cb2892038867aDFa78CCfc6C3fB89b1dA558243',
+    token0: arbitrumTokens.pendle,
+    token1: arbitrumTokens.weth,
+    feeAmount: FeeAmount.MEDIUM,
+  },
+  {
+    pid: 11,
+    lpAddress: '0xF5BFda16f9E57F0B7a67C57b42407C33C31349B6',
+    token0: arbitrumTokens.weth,
+    token1: arbitrumTokens.gmx,
+    feeAmount: FeeAmount.MEDIUM,
+  },
+  {
+    pid: 12,
+    lpAddress: '0x0Ba3d55678C019B8101061855fe4Ea8D3ECE784f',
+    token0: arbitrumTokens.weth,
+    token1: arbitrumTokens.link,
+    feeAmount: FeeAmount.MEDIUM,
+  },
+  {
+    pid: 13,
+    lpAddress: '0xC9057e7b625D293c0E308Ce344357E2d23174CE6',
+    token0: arbitrumTokens.kuji,
+    token1: arbitrumTokens.weth,
+    feeAmount: FeeAmount.MEDIUM,
+  },
+  {
+    pid: 14,
+    lpAddress: '0x6a23ec7A203F546d7D62FA667A652EC55197Ea6F',
+    token0: arbitrumTokens.usdc,
+    token1: arbitrumTokens.link,
+    feeAmount: FeeAmount.MEDIUM,
+  },
+  {
+    pid: 15,
+    lpAddress: '0x278566F0ad52fbF36eb4Ba16d2171ed6e6e84e8a',
+    token0: arbitrumTokens.weth,
+    token1: arbitrumTokens.eqb,
+    feeAmount: FeeAmount.MEDIUM,
+  },
+  {
+    pid: 16,
+    lpAddress: '0x3C2bf5C0Be7be4919fae1330b748E89f165259D7',
+    token0: arbitrumTokens.usdc,
+    token1: arbitrumTokens.axlUSDC,
+    feeAmount: FeeAmount.LOWEST,
+  },
+])
