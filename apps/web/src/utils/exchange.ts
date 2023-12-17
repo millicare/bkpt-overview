@@ -1,5 +1,4 @@
 import { Currency, CurrencyAmount, Fraction, Percent, Trade, TradeType } from '@pancakeswap/sdk'
-import { pancakeRouter02ABI } from 'config/abi/IPancakeRouter02'
 import {
   ALLOWED_PRICE_IMPACT_HIGH,
   ALLOWED_PRICE_IMPACT_LOW,
@@ -7,14 +6,10 @@ import {
   BIPS_BASE,
   BLOCKED_PRICE_IMPACT_NON_EXPERT,
   INPUT_FRACTION_AFTER_FEE,
-  ONE_HUNDRED_PERCENT,
-  V2_ROUTER_ADDRESS,
+  ONE_HUNDRED_PERCENT
 } from 'config/constants/exchange'
 import { StableTrade } from 'config/constants/types'
 
-import { useActiveChainId } from 'hooks/useActiveChainId'
-import { useContract } from 'hooks/useContract'
-import { Field } from '../state/swap/actions'
 
 // converts a basis points value to a sdk percent
 export function basisPointsToPercent(num: number): Percent {
@@ -29,11 +24,6 @@ export function calculateSlippageAmount(value: CurrencyAmount<Currency>, slippag
     (value.quotient * BigInt(10000 - slippage)) / BIPS_BASE,
     (value.quotient * BigInt(10000 + slippage)) / BIPS_BASE,
   ]
-}
-
-export function useRouterContract() {
-  const { chainId } = useActiveChainId()
-  return useContract(V2_ROUTER_ADDRESS[chainId], pancakeRouter02ABI)
 }
 
 // computes price breakdown for the trade
@@ -70,19 +60,6 @@ export function computeTradePriceBreakdown(trade?: Trade<Currency, Currency, Tra
     )
 
   return { priceImpactWithoutFee: priceImpactWithoutFeePercent, realizedLPFee: realizedLPFeeAmount }
-}
-
-// computes the minimum amount out and maximum amount in for a trade given a user specified allowed slippage in bips
-
-export function computeSlippageAdjustedAmounts(
-  trade: Trade<Currency, Currency, TradeType> | StableTrade | undefined,
-  allowedSlippage: number,
-): { [field in Field]?: CurrencyAmount<Currency> } {
-  const pct = basisPointsToPercent(allowedSlippage)
-  return {
-    [Field.INPUT]: trade?.maximumAmountIn(pct),
-    [Field.OUTPUT]: trade?.minimumAmountOut(pct),
-  }
 }
 
 export function warningSeverity(priceImpact: Percent | undefined): 0 | 1 | 2 | 3 | 4 {

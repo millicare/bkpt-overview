@@ -1,13 +1,12 @@
 /* eslint-disable no-param-reassign */
-import { ERC20Token } from '@pancakeswap/sdk'
 import { ChainId } from '@pancakeswap/chains'
-import { Currency, NativeCurrency } from '@pancakeswap/swap-sdk-core'
+import { ERC20Token } from '@pancakeswap/sdk'
+import { Currency } from '@pancakeswap/swap-sdk-core'
 
 import { TokenAddressMap } from '@pancakeswap/token-lists'
 import { GELATO_NATIVE } from 'config/constants'
 import { useAtomValue } from 'jotai'
 import { useMemo } from 'react'
-import { useToken as useToken_ } from 'wagmi'
 import {
   combinedCurrenciesMapFromActiveUrlsAtom,
   combinedTokenMapFromActiveUrlsAtom,
@@ -16,9 +15,10 @@ import {
   useWarningTokenList,
 } from 'state/lists/hooks'
 import { safeGetAddress } from 'utils'
+import { useToken as useToken_ } from 'wagmi'
 import useUserAddedTokens from '../state/user/hooks/useUserAddedTokens'
 import { useActiveChainId } from './useActiveChainId'
-import useNativeCurrency from './useNativeCurrency'
+
 
 const mapWithoutUrls = (tokenMap?: TokenAddressMap<ChainId>, chainId?: number) => {
   if (!tokenMap || !chainId) return {}
@@ -121,18 +121,6 @@ export function useWarningTokens(): { [address: string]: ERC20Token } {
   return useMemo(() => mapWithoutUrls(warningTokensMap, chainId), [warningTokensMap, chainId])
 }
 
-export function useIsTokenActive(token: ERC20Token | undefined | null): boolean {
-  const activeTokens = useAllTokens()
-
-  if (!activeTokens || !token) {
-    return false
-  }
-
-  const tokenAddress = safeGetAddress(token.address)
-
-  return tokenAddress && !!activeTokens[tokenAddress]
-}
-
 // Check if currency is included in custom list from user storage
 export function useIsUserAddedToken(currency: Currency | undefined | null): boolean {
   const userAddedTokens = useUserAddedTokens()
@@ -179,31 +167,8 @@ export function useToken(tokenAddress?: string): ERC20Token | undefined | null {
   }, [token, chainId, address, isLoading, data])
 }
 
-export function useOnRampToken(tokenAddress?: string): Currency | undefined {
-  const { chainId } = useActiveChainId()
-  const tokens = useAllOnRampTokens()
-  const address = safeGetAddress(tokenAddress)
-  const token = tokens[tokenAddress]
-
-  return useMemo(() => {
-    if (token) return token
-    if (!chainId || !address) return undefined
-    return undefined
-  }, [token, chainId, address])
-}
-
 export function useCurrency(currencyId: string | undefined): Currency | ERC20Token | null | undefined {
-  const native = useNativeCurrency()
-  const isNative =
-    currencyId?.toUpperCase() === native.symbol?.toUpperCase() || currencyId?.toLowerCase() === GELATO_NATIVE
+  const isNative = currencyId?.toLowerCase() === GELATO_NATIVE
   const token = useToken(isNative ? undefined : currencyId)
-  return isNative ? native : token
-}
-
-export function useOnRampCurrency(currencyId: string | undefined): NativeCurrency | Currency | null | undefined {
-  const native = useNativeCurrency()
-  const isNative =
-    currencyId?.toUpperCase() === native.symbol?.toUpperCase() || currencyId?.toLowerCase() === GELATO_NATIVE
-  const token = useOnRampToken(currencyId)
-  return isNative ? native : token
+  return token
 }
